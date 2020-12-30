@@ -1,5 +1,5 @@
-import "./App.css";
-import VoterForm from "./VoterForm";
+import "../App.css";
+import Form from "./Form";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <h1>Welcome To The Find My Representatives Assistant!</h1>
       </header>
-      <VoterForm />
+      <Form />
     </div>
   );
 }

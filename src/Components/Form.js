@@ -13,7 +13,7 @@ const defaultState = {
   repInfo: {},
 };
 
-class VoterForm extends React.Component {
+class Form extends React.Component {
   constructor() {
     super();
     this.state = defaultState;
@@ -50,6 +50,7 @@ class VoterForm extends React.Component {
     event.preventDefault();
     const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
     this.fetchVoterInfo(address);
+    this.setState(defaultState);
   }
 
   render() {
@@ -64,14 +65,14 @@ class VoterForm extends React.Component {
             name="street1"
             type="text"
             onChange={this.handleChange}
-            value={this.state.streetAddress1}
+            value={this.state.street1}
           />
           <label htmlFor="street2">Street Address 2:</label>
           <input
             name="street2"
             type="text"
             onChange={this.handleChange}
-            value={this.state.streetAddress2}
+            value={this.state.street2}
           />
 
           <label htmlFor="city">City:</label>
@@ -110,4 +111,4 @@ class VoterForm extends React.Component {
   }
 }
 
-export default VoterForm;
+export default Form;
