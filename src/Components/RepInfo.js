@@ -31,7 +31,7 @@ const RepInfo = (props) => {
                       alt={`${official.name}`}
                     />
                   ) : (
-                    ""
+                    "No Image Available"
                   )}
                 </td>
                 <td>{official.name}</td>
