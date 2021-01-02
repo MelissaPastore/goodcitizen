@@ -100,7 +100,7 @@ class Form extends React.Component {
           />
 
           <button type="submit" disabled={!this.state.street1}>
-            Look Up My Info
+            Find My Reps!
           </button>
         </form>
         {this.state.repInfo.normalizedInput && (

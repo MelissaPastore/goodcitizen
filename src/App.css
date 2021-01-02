@@ -25,3 +25,39 @@
   height: 100px;
   width: 100px;
 }
+
+nav {
+  align-items: center;
+  color: #c0c0c0;
+  display: flex;
+  height: 80px;
+  padding: 5px;
+  justify-content: space-around;
+}
+
+.nav-link {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+p {
+  font-size: 30px;
+  color: black;
+}
+
+#watson {
+  color: black;
+}
+
+.navbar-link {
+  color: white;
+  margin: 10px;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  padding: 10px;
+}
