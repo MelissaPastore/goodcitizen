@@ -9,18 +9,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Welcome To The Good Citizen Assistant!</h1>
-        <nav id="navbar">
-          <Link className="navbar-link" to="/">
-            Home
-          </Link>
-          <Link className="navbar-link" to="/selfservice">
-            Self Service
-          </Link>
-          <Link className="navbar-link" to="/watson">
-            Chat
-          </Link>
-        </nav>
       </header>
+      <nav id="navbar">
+        <Link className="navbar-link" to="/">
+          Home
+        </Link>
+        <Link className="navbar-link" to="/selfservice">
+          Self Service
+        </Link>
+        <Link className="navbar-link" to="/watson">
+          Chat
+        </Link>
+      </nav>
       <div>
         <Switch>
           <Route exact path="/selfservice" component={Form} />

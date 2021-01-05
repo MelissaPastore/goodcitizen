@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #5386e4;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,38 @@
 .rep-img {
   height: 100px;
   width: 100px;
+  border-radius: 5px;
+}
+
+.nav-link {
+  border: 1px groove;
+  border-radius: 10px;
+  font-size: 20px;
+  height: 10vh;
+  width: 30vh;
+  background-color: #aba8b2;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 10vh;
+}
+
+.navbar-link {
+  color: white;
+  margin: 10px;
+}
+
+.input {
+  margin: 10px;
+  border: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 30%;
+}
+
+p {
+  font-size: 30px;
+  color: black;
 }
 
 nav {
@@ -35,29 +67,57 @@ nav {
   justify-content: space-around;
 }
 
-.nav-link {
-  border: 1px solid black;
-  border-radius: 5px;
-  font-size: 20px;
-}
-
-p {
-  font-size: 30px;
-  color: black;
+button {
+  /* padding: 5px;
+  margin: 5px; */
+  width: 30%;
+  height: 15%;
+  display: block;
 }
 
 #watson {
   color: black;
 }
 
-.navbar-link {
-  color: white;
-  margin: 10px;
-}
-
 #navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 80px;
   padding: 10px;
+  background-color: #4c4b63;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+#voter-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  border: 3px groove;
+  width: 70vw;
+  height: 30vh;
+  border-radius: 10px;
+  align-items: baseline;
+}
+
+#form-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+#twitter {
+  height: 40px;
+  width: 40px;
+}
+
+#email {
+  height: 30px;
+  width: 30px;
 }
