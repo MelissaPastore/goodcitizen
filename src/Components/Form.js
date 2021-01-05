@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import RepInfo from "./RepInfo";
+import { Button, TextField } from "@material-ui/core";
 
 const apiKey = "AIzaSyDjlaoJuNCzeIuVCLilYlSUIGSVMF0lFzA";
 
@@ -55,53 +56,65 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>
-          Please enter your address to look up your government representatives.
-        </h2>
+      <div id="form-container">
+        <h2>Please enter your address to look up your representatives.</h2>
         <form id="voter-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="street1">Street Address 1:</label>
-          <input
+          <TextField
+            className="input"
+            label="Street Address 1"
             name="street1"
             type="text"
             onChange={this.handleChange}
             value={this.state.street1}
+            variant="filled"
           />
-          <label htmlFor="street2">Street Address 2:</label>
-          <input
+
+          <TextField
+            className="input"
+            label="Street Address 2"
             name="street2"
             type="text"
             onChange={this.handleChange}
             value={this.state.street2}
+            variant="filled"
           />
-
-          <label htmlFor="city">City:</label>
-          <input
+          <TextField
+            className="input"
+            label="City"
             name="city"
             type="text"
             onChange={this.handleChange}
             value={this.state.city}
+            variant="filled"
           />
-
-          <label htmlFor="state">State:</label>
-          <input
+          <TextField
+            className="input"
+            label="State"
             name="state"
             type="text"
             onChange={this.handleChange}
             value={this.state.state}
+            variant="filled"
           />
-
-          <label htmlFor="zip">Zip Code:</label>
-          <input
+          <TextField
+            className="input"
+            label="Zip"
             name="zip"
             type="text"
             onChange={this.handleChange}
             value={this.state.zip}
+            variant="filled"
           />
-
-          <button type="submit" disabled={!this.state.street1}>
+          <div className="break"></div>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={!this.state.street1}
+            color="primary"
+            size="small"
+          >
             Find My Reps!
-          </button>
+          </Button>
         </form>
         {this.state.repInfo.normalizedInput && (
           <RepInfo repInfo={this.state.repInfo} />

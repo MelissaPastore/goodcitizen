@@ -21,9 +21,9 @@ class Watson extends React.Component {
   render() {
     return (
       <div id="watson">
-        <h1>
+        <p>
           Okay - click that chat bubble in the bottom right hand corner then!
-        </h1>
+        </p>
       </div>
     );
   }
