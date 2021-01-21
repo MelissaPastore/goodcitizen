@@ -2,8 +2,7 @@ import React from "react";
 import axios from "axios";
 import RepInfo from "./RepInfo";
 import { Button, TextField } from "@material-ui/core";
-
-const apiKey = "AIzaSyDjlaoJuNCzeIuVCLilYlSUIGSVMF0lFzA";
+import GOOGLE_API from "../secrets";
 
 const defaultState = {
   street1: "",
@@ -36,7 +35,7 @@ class Form extends React.Component {
         {
           params: {
             address,
-            key: apiKey,
+            key: GOOGLE_API,
           },
         }
       );

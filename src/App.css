@@ -38,11 +38,13 @@
   text-align: center;
   vertical-align: middle;
   line-height: 10vh;
+  text-decoration: none;
 }
 
 .navbar-link {
   color: white;
   margin: 10px;
+  text-decoration: none;
 }
 
 .input {
