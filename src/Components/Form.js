@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
 import RepInfo from "./RepInfo";
 import { Button, TextField } from "@material-ui/core";
-import GOOGLE_API from "../secrets";
+import { connect } from "react-redux";
+import { fetchRepInfo } from "../store/repInfo";
 
 const defaultState = {
   street1: "",
@@ -10,7 +10,6 @@ const defaultState = {
   city: "",
   state: "",
   zip: "",
-  repInfo: {},
 };
 
 class Form extends React.Component {
@@ -19,7 +18,7 @@ class Form extends React.Component {
     this.state = defaultState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.fetchVoterInfo = this.fetchVoterInfo.bind(this);
+    // this.fetchVoterInfo = this.fetchVoterInfo.bind(this);
   }
 
   handleChange(event) {
@@ -28,28 +27,28 @@ class Form extends React.Component {
     });
   }
 
-  async fetchVoterInfo(address) {
-    try {
-      const res = await axios.get(
-        `https://www.googleapis.com/civicinfo/v2/representatives`,
-        {
-          params: {
-            address,
-            key: GOOGLE_API,
-          },
-        }
-      );
+  // async fetchVoterInfo(address) {
+  //   try {
+  //     const res = await axios.get(
+  //       `https://www.googleapis.com/civicinfo/v2/representatives`,
+  //       {
+  //         params: {
+  //           address,
+  //           key: GOOGLE_API,
+  //         },
+  //       }
+  //     );
 
-      this.setState({ repInfo: res.data });
-    } catch (err) {
-      console.log("There was an error getting the voter info", err);
-    }
-  }
+  //     this.setState({ repInfo: res.data });
+  //   } catch (err) {
+  //     console.log("There was an error getting the voter info", err);
+  //   }
+  // }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
-    this.fetchVoterInfo(address);
+    await this.props.fetchRepInfo(address);
     this.setState(defaultState);
   }
 
@@ -115,12 +114,22 @@ class Form extends React.Component {
             Find My Reps!
           </Button>
         </form>
-        {this.state.repInfo.normalizedInput && (
-          <RepInfo repInfo={this.state.repInfo} />
-        )}
+        {this.props.repInfo.normalizedInput && <RepInfo />}
       </div>
     );
   }
 }
 
-export default Form;
+const mapStateToProps = (state) => {
+  return {
+    repInfo: state.repInfo,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchRepInfo: (address) => dispatch(fetchRepInfo(address)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
