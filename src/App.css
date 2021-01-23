@@ -39,6 +39,7 @@
   vertical-align: middle;
   line-height: 10vh;
   text-decoration: none;
+  margin: 20px;
 }
 
 .navbar-link {
@@ -67,6 +68,17 @@ nav {
   height: 80px;
   padding: 5px;
   justify-content: space-around;
+}
+
+#rep-nav {
+  align-items: center;
+  color: #c0c0c0;
+  display: flex;
+  /* flex-direction: column; */
+  padding: 10px;
+  margin: 50px;
+  justify-content: center;
+  height: 60%;
 }
 
 button {
@@ -122,4 +134,9 @@ button {
 #email {
   height: 30px;
   width: 30px;
+}
+
+#home-img {
+  height: 80%;
+  width: 100%;
 }

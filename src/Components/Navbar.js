@@ -8,11 +8,8 @@ function Navbar() {
         <Link className="navbar-link" to="/">
           Home
         </Link>
-        <Link className="navbar-link" to="/selfservice">
-          Self Service
-        </Link>
-        <Link className="navbar-link" to="/watson">
-          Chat
+        <Link className="navbar-link" to="/reps">
+          Find My Reps
         </Link>
       </nav>
     </div>

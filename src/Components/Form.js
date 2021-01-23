@@ -18,7 +18,6 @@ class Form extends React.Component {
     this.state = defaultState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.fetchVoterInfo = this.fetchVoterInfo.bind(this);
   }
 
   handleChange(event) {
@@ -26,24 +25,6 @@ class Form extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
-  // async fetchVoterInfo(address) {
-  //   try {
-  //     const res = await axios.get(
-  //       `https://www.googleapis.com/civicinfo/v2/representatives`,
-  //       {
-  //         params: {
-  //           address,
-  //           key: GOOGLE_API,
-  //         },
-  //       }
-  //     );
-
-  //     this.setState({ repInfo: res.data });
-  //   } catch (err) {
-  //     console.log("There was an error getting the voter info", err);
-  //   }
-  // }
 
   async handleSubmit(event) {
     event.preventDefault();
