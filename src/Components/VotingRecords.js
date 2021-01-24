@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import RecordForm from "./RecordForm"
-import {fetchMembers} from "../store/votingRecs"
+import {fetchMembers} from "../store/members"
 
 
 const defaultState = {
-  chamber: ""
+  chamber: "senate"
 }
 
 
@@ -27,9 +27,9 @@ class VotingRecords extends React.Component {
     return (
       <div>
         <p>
-         Look up the voting records for your members of Congress.
+         Look up the recent voting records for your members of Congress.
         </p>
-        <label htmlFor="chamber-select">Are you searching the Senate or the House?</label>
+        <label htmlFor="chamber-select">Do you want to search Senate or the House?</label>
 <form>
 <select id="chamber-select" onChange={this.handleChange}>
     <option value="senate">Senate</option>
