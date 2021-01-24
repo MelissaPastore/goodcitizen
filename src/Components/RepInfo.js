@@ -19,7 +19,6 @@ const RepInfo = (props) => {
     <div>
       <div>
         <p>Here are your representatives:</p>
-
         <Table>
           <TableHead>
             <TableRow>
@@ -68,7 +67,7 @@ const RepInfo = (props) => {
                         {official.emails[0]}
                       </a>
                     ) : (
-                      "No Email Available"
+                      "No email available"
                     )}
                   </TableCell>
                   <TableCell>

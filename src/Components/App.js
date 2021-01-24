@@ -5,7 +5,7 @@ import Watson from "./Watson";
 import Welcome from "./Welcome";
 import Navbar from "./Navbar";
 import FindMyReps from "./FindMyReps";
-import VotingRecords from "./VotingRecords"
+import VotingRecords from "./VotingRecords";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/watson" component={Watson} />
           <Route exact path="/" component={Welcome} />
           <Route exact path="/reps" component={FindMyReps} />
-          <Route exact path="/records" component={VotingRecords}/>
+          <Route exact path="/records" component={VotingRecords} />
         </Switch>
       </div>
     </div>

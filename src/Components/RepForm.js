@@ -45,7 +45,7 @@ class RepForm extends React.Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.street1}
-            variant="filled"
+            variant="outlined"
           />
 
           <TextField
@@ -55,7 +55,7 @@ class RepForm extends React.Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.street2}
-            variant="filled"
+            variant="outlined"
           />
           <TextField
             className="input"
@@ -64,7 +64,7 @@ class RepForm extends React.Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.city}
-            variant="filled"
+            variant="outlined"
           />
           <TextField
             className="input"
@@ -73,7 +73,7 @@ class RepForm extends React.Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.state}
-            variant="filled"
+            variant="outlined"
           />
           <TextField
             className="input"
@@ -82,7 +82,7 @@ class RepForm extends React.Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.zip}
-            variant="filled"
+            variant="outlined"
           />
           <div className="break"></div>
           <Button

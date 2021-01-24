@@ -11,7 +11,9 @@ function Navbar() {
         <Link className="navbar-link" to="/reps">
           Find My Reps
         </Link>
-        <Link className="navbar-link" to="/records">Voting Records</Link>
+        <Link className="navbar-link" to="/records">
+          Voting Records
+        </Link>
       </nav>
     </div>
   );

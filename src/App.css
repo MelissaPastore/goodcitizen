@@ -127,7 +127,7 @@ button {
 }
 
 .break {
-  flex-basis: 100%;
+  flex-basis: 90%;
   height: 0;
 }
 
@@ -164,4 +164,31 @@ button {
 
 #welcome-head {
   font-size: 30px;
+}
+
+#chamber-label {
+  font-size: 30px;
+  color: #4c4b63;
+}
+
+#chamber-select {
+  font-size: 30px;
+  color: #4c4b63;
+  border-radius: 10px;
+}
+
+h2 {
+  color: #4c4b63;
+}
+
+#record-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  border: 3px groove;
+  width: 90vw;
+  height: 20vh;
+  border-radius: 10px;
+  align-items: baseline;
 }
