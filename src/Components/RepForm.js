@@ -12,7 +12,7 @@ const defaultState = {
   zip: "",
 };
 
-class Form extends React.Component {
+class RepForm extends React.Component {
   constructor() {
     super();
     this.state = defaultState;
@@ -86,6 +86,7 @@ class Form extends React.Component {
           />
           <div className="break"></div>
           <Button
+            style={{ backgroundColor: "#5386e4" }}
             variant="contained"
             type="submit"
             disabled={!this.state.street1}
@@ -113,4 +114,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(RepForm);

@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  background-color: #e0e0e0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -33,7 +37,7 @@
   font-size: 20px;
   height: 10vh;
   width: 30vh;
-  background-color: #aba8b2;
+  background-color: #949396;
   color: white;
   text-align: center;
   vertical-align: middle;
@@ -58,7 +62,7 @@
 
 p {
   font-size: 30px;
-  color: black;
+  color: #4c4b63;
 }
 
 nav {
@@ -87,6 +91,7 @@ button {
   width: 30%;
   height: 15%;
   display: block;
+  color: white;
 }
 
 #watson {
@@ -137,6 +142,26 @@ button {
 }
 
 #home-img {
-  height: 80%;
+  height: 100%;
   width: 100%;
+}
+
+#welcome {
+  position: relative;
+  text-align: left;
+}
+
+.welcome {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  color: #4c4b63;
+  /* font-size: 18px; */
+  width: 50%;
+  height: 60%;
+  /* transform: translate(-50%, -50%); */
+}
+
+#welcome-head {
+  font-size: 30px;
 }

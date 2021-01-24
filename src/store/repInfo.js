@@ -1,5 +1,5 @@
 import axios from "axios";
-import GOOGLE_API from "../secrets";
+import {GOOGLE_API} from "../secrets";
 
 const SET_REP_INFO = "SET_REP_INFO";
 
@@ -29,7 +29,7 @@ export function fetchRepInfo(address) {
 
 const initialState = {};
 
-export default function singleProductReducer(state = initialState, action) {
+export default function repReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REP_INFO:
       return action.repInfo;

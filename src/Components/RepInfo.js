@@ -7,6 +7,8 @@ import {
 } from "@material-ui/core";
 
 import { connect } from "react-redux";
+import "react-tabulator/lib/styles.css";
+import { ReactTabulator } from "react-tabulator";
 
 const RepInfo = (props) => {
   const repInfo = props.repInfo;
@@ -17,6 +19,7 @@ const RepInfo = (props) => {
     <div>
       <div>
         <p>Here are your representatives:</p>
+
         <Table>
           <TableHead>
             <TableRow>
