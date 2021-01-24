@@ -8,6 +8,7 @@ export const setMembers = (members) => ({
   members,
 })
 
+
 export function fetchMembers (chamber) {
   return async (dispatch) => {
     try {
@@ -20,6 +21,8 @@ catch(err){
 }
   }
 }
+
+
 
 const initialState = [];
 
