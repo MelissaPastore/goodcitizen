@@ -12,7 +12,7 @@ function Navbar() {
           Find My Reps
         </Link>
         <Link className="navbar-link" to="/records">
-          Voting Records
+          Voting History
         </Link>
       </nav>
     </div>

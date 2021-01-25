@@ -132,13 +132,18 @@ button {
 }
 
 #twitter {
-  height: 40px;
-  width: 40px;
+  height: 25px;
+  width: 25px;
+}
+
+#phone {
+  height: 22px;
+  width: 22px;
 }
 
 #email {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
 }
 
 #home-img {

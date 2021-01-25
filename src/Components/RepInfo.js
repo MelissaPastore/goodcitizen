@@ -26,6 +26,7 @@ const RepInfo = (props) => {
               <TableCell>Name</TableCell>
               <TableCell>Office</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Phone</TableCell>
               <TableCell>Twitter</TableCell>
             </TableRow>
           </TableHead>
@@ -71,11 +72,26 @@ const RepInfo = (props) => {
                     )}
                   </TableCell>
                   <TableCell>
+                    {" "}
+                    {official.phones ? (
+                      <div>
+                        <img
+                          id="phone"
+                          src="https://www.pinclipart.com/picdir/big/129-1293919_small-phone-icon-blue-clipart.png"
+                          alt="email logo"
+                        />
+                        {official.phones[0]}
+                      </div>
+                    ) : (
+                      "No phone number available"
+                    )}
+                  </TableCell>
+                  <TableCell>
                     {twitter ? (
                       <a href={`https://twitter.com/${twitter.id}`}>
                         <img
                           id="twitter"
-                          src="https://www.logolynx.com/images/logolynx/43/430c07f27af3fda19373042528edbe3d.jpeg"
+                          src="https://www.pinclipart.com/picdir/big/74-740310_transparent-background-twitter-logo-clipart.png"
                           alt="twitter logo"
                         />
                         {twitter.id}
