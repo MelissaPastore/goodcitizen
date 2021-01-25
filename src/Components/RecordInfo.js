@@ -10,18 +10,20 @@ import {
 
 class RecordInfo extends React.Component {
   render() {
-    const votes = this.props.record;
+    const votes = this.props.record.details;
     const columns = [
       { title: "Date", field: "date" },
       { title: "Voted", field: "position" },
     ];
+    const error = this.props.record.error;
 
     return (
       <div>
-        {!votes.length ? (
+        {error ? (
           <div>
             We couldn't find a voting history for that person. Please make sure
-            you were searching the correct chamber of Congress.
+            you were searching the correct chamber of Congress and that the
+            person is a current member of Congress.
           </div>
         ) : (
           <div>

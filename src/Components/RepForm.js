@@ -10,7 +10,6 @@ const defaultState = {
   city: "",
   state: "",
   zip: "",
-  errorMsg: "",
 };
 
 class RepForm extends React.Component {
@@ -32,18 +31,11 @@ class RepForm extends React.Component {
   }
 
   async handleSubmit(event) {
-    try {
-      event.preventDefault();
-      await this.props.clearRepInfo();
-      const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
-      await this.props.fetchRepInfo(address);
-      this.setState(defaultState);
-    } catch (err) {
-      this.setState({
-        errorMsg:
-          "There was a problem looking up the information for that address",
-      });
-    }
+    event.preventDefault();
+    await this.props.clearRepInfo();
+    const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
+    await this.props.fetchRepInfo(address);
+    this.setState(defaultState);
   }
 
   render() {

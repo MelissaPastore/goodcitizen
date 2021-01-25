@@ -2,7 +2,7 @@ import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { fetchMembers } from "../store/members";
-import { fetchRecord } from "../store/records";
+import { fetchRecord, clearRecord } from "../store/records";
 import RecordInfo from "./RecordInfo";
 
 const defaultState = {
@@ -19,6 +19,7 @@ class RecordForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   async componentDidMount() {
+    await this.props.clearRecord();
     await this.props.fetchMembers(this.props.chamber);
   }
 
@@ -30,6 +31,7 @@ class RecordForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+    this.props.clearRecord();
     let member = this.props.members.find((member) => {
       return (
         member.first_name === this.state.first_name &&
@@ -83,7 +85,8 @@ class RecordForm extends React.Component {
             Find Voting Records!
           </Button>
         </form>
-        {this.props.record.length && <RecordInfo name={this.state.name} />}
+        {this.props.record.details && <RecordInfo name={this.state.name} />}
+        {this.props.record.error && <RecordInfo name={this.state.name} />}
       </div>
     );
   }
@@ -99,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchMembers: (chamber) => dispatch(fetchMembers(chamber)),
     fetchRecord: (member) => dispatch(fetchRecord(member)),
+    clearRecord: () => dispatch(clearRecord()),
   };
 };
 
