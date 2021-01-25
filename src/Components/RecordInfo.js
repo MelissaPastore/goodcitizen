@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   Table,
   TableBody,
@@ -7,56 +8,54 @@ import {
   TableCell,
 } from "@material-ui/core";
 
-import { connect } from "react-redux";
-
 class RecordInfo extends React.Component {
-
-
-
-  render () {
+  render() {
     const votes = this.props.record;
+    const columns = [
+      { title: "Date", field: "date" },
+      { title: "Voted", field: "position" },
+    ];
 
     return (
       <div>
-        {!votes.length ?
-      <div>We couldn't find a voting history for that person. Please make sure you were searching the correct chamber of Congress.</div>  : <div>
-      <p>{`Here is the recent voting record for ${this.props.name}`}:</p>
+        {!votes.length ? (
+          <div>
+            We couldn't find a voting history for that person. Please make sure
+            you were searching the correct chamber of Congress.
+          </div>
+        ) : (
+          <div>
+            <p>{`Here is the recent voting record for ${this.props.name}`}:</p>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Date of Vote</TableCell>
+                  <TableCell>Voted</TableCell>
+                  <TableCell>Result</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {votes.map((vote, index) => {
+                  const date = new Date(vote.date);
 
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Description</TableCell>
-            <TableCell>Date of Vote</TableCell>
-            <TableCell>Voted</TableCell>
-            <TableCell>Result</TableCell>
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {votes.map((vote, index) => {
-            const date = new Date(vote.date);
-
-            return (
-              <TableRow key={index}>
-                <TableCell>
-                  {vote.bill.title ? vote.bill.title : vote.description}
-                </TableCell>
-                <TableCell>{date.toLocaleDateString()}</TableCell>
-                <TableCell>{vote.position}</TableCell>
-                <TableCell>
-                  {vote.result}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>{" "}
-    </div>
-
-      }
+                  return (
+                    <TableRow key={index}>
+                      <TableCell>
+                        {vote.bill.title ? vote.bill.title : vote.description}
+                      </TableCell>
+                      <TableCell>{date.toLocaleDateString()}</TableCell>
+                      <TableCell>{vote.position}</TableCell>
+                      <TableCell>{vote.result}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>{" "}
+          </div>
+        )}
       </div>
-    )
-
+    );
   }
 }
 

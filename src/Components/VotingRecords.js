@@ -34,7 +34,7 @@ class VotingRecords extends React.Component {
             <option value="house">House</option>
           </select>
         </form>
-        {this.state.chamber && <RecordForm chamber={this.state.chamber} />}
+        <RecordForm chamber={this.state.chamber} />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import RepInfo from "./RepInfo";
 import { Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
-import { fetchRepInfo } from "../store/repInfo";
+import { fetchRepInfo, clearRepInfo } from "../store/repInfo";
 
 const defaultState = {
   street1: "",
@@ -10,6 +10,7 @@ const defaultState = {
   city: "",
   state: "",
   zip: "",
+  errorMsg: "",
 };
 
 class RepForm extends React.Component {
@@ -20,6 +21,10 @@ class RepForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  async componentDidMount() {
+    await this.props.clearRepInfo();
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -27,10 +32,18 @@ class RepForm extends React.Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
-    const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
-    await this.props.fetchRepInfo(address);
-    this.setState(defaultState);
+    try {
+      event.preventDefault();
+      await this.props.clearRepInfo();
+      const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
+      await this.props.fetchRepInfo(address);
+      this.setState(defaultState);
+    } catch (err) {
+      this.setState({
+        errorMsg:
+          "There was a problem looking up the information for that address",
+      });
+    }
   }
 
   render() {
@@ -96,7 +109,8 @@ class RepForm extends React.Component {
             Find My Reps!
           </Button>
         </form>
-        {this.props.repInfo.normalizedInput && <RepInfo />}
+        {this.props.repInfo.details && <RepInfo />}
+        {this.props.repInfo.error && <RepInfo />}
       </div>
     );
   }
@@ -111,6 +125,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchRepInfo: (address) => dispatch(fetchRepInfo(address)),
+    clearRepInfo: () => dispatch(clearRepInfo()),
   };
 };
 
