@@ -7,8 +7,7 @@ import {
 } from "@material-ui/core";
 
 import { connect } from "react-redux";
-import "react-tabulator/lib/styles.css";
-import { ReactTabulator } from "react-tabulator";
+import { Link } from "react-router-dom";
 
 const RepInfo = (props) => {
   const repInfo = props.repInfo.details || {};
@@ -26,15 +25,16 @@ const RepInfo = (props) => {
       ) : (
         <div>
           <p>Here are your representatives:</p>
-          <Table>
+          <Table stickyHeader={true}>
             <TableHead>
-              <TableRow>
+              <TableRow style={{ backgroundColor: "#5386e4" }}>
                 <TableCell>Image</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Office</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Phone</TableCell>
                 <TableCell>Twitter</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -48,6 +48,16 @@ const RepInfo = (props) => {
                       return channel.type === "Twitter";
                     }))
                   : (twitter = undefined);
+
+                let senate = office.name === "U.S. Senator";
+                let house = office.name === "U.S. Representative";
+                let congress = senate || house;
+                let chamber;
+                if (senate) {
+                  chamber = "senate";
+                } else if (house) {
+                  chamber = "house";
+                }
 
                 return (
                   <TableRow key={index}>
@@ -105,6 +115,13 @@ const RepInfo = (props) => {
                         </a>
                       ) : (
                         "No Twitter Found"
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {congress && (
+                        <Link to={`/records/${official.name}/${chamber}`}>
+                          Click to see recent voting history
+                        </Link>
                       )}
                     </TableCell>
                   </TableRow>

@@ -11,10 +11,7 @@ import {
 class RecordInfo extends React.Component {
   render() {
     const votes = this.props.record.details;
-    const columns = [
-      { title: "Date", field: "date" },
-      { title: "Voted", field: "position" },
-    ];
+
     const error = this.props.record.error;
 
     return (
@@ -28,8 +25,8 @@ class RecordInfo extends React.Component {
         ) : (
           <div>
             <p>{`Here is the recent voting record for ${this.props.name}`}:</p>
-            <Table>
-              <TableHead>
+            <Table stickyHeader={true}>
+              <TableHead variant="header">
                 <TableRow>
                   <TableCell>Description</TableCell>
                   <TableCell>Date of Vote</TableCell>

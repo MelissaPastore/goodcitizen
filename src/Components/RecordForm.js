@@ -21,6 +21,21 @@ class RecordForm extends React.Component {
   async componentDidMount() {
     await this.props.clearRecord();
     await this.props.fetchMembers(this.props.chamber);
+    let name;
+    if (this.props.name) {
+      name = this.props.name;
+      let nameArr = name.split(" ");
+      let first = nameArr[0];
+      let last;
+      if (nameArr.length === 2) {
+        last = nameArr[1];
+      } else if (nameArr.length > 2 && nameArr[1].length === 2) {
+        last = nameArr[2];
+      } else if (nameArr.length > 2) {
+        last = nameArr.slice(1).join(" ");
+      }
+      this.setState({ first_name: first, last_name: last });
+    }
   }
 
   handleChange(event) {

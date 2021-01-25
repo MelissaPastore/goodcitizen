@@ -13,6 +13,13 @@ class VotingRecords extends React.Component {
     this.state = defaultState;
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+    if (this.props.match.params.chamber) {
+      console.log(this.props.match.params.chamber);
+      this.setState({ chamber: this.props.match.params.chamber });
+    }
+  }
   async handleChange(event) {
     await this.setState({
       chamber: event.target.value,
@@ -34,7 +41,10 @@ class VotingRecords extends React.Component {
             <option value="house">House</option>
           </select>
         </form>
-        <RecordForm chamber={this.state.chamber} />
+        <RecordForm
+          chamber={this.state.chamber}
+          name={this.props.match.params.name}
+        />
       </div>
     );
   }

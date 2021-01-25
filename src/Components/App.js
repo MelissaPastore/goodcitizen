@@ -20,7 +20,9 @@ function App() {
           <Route exact path="/watson" component={Watson} />
           <Route exact path="/" component={Welcome} />
           <Route exact path="/reps" component={FindMyReps} />
-          <Route exact path="/records" component={VotingRecords} />
+          <Route path="/records/:name/:chamber" component={VotingRecords} />
+          <Route path="/records/" component={VotingRecords} />
+          <Route component={Welcome} />
         </Switch>
       </div>
     </div>
