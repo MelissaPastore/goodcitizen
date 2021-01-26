@@ -10,9 +10,8 @@ const Welcome = () => {
         <h2 id="welcome-head">
           Get the information you need to be an engaged citizen.
         </h2>
-        <p>Find your elected officials.</p>
+        <p>Find and contact your elected officials.</p>
         <p>See how your members of Congress voted on important issues.</p>
-        <p>Find out about upcoming elections and find your polling place.</p>
       </div>
     </div>
   );

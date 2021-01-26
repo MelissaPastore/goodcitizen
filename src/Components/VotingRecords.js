@@ -30,7 +30,9 @@ class VotingRecords extends React.Component {
   render() {
     return (
       <div>
-        <p>Voting history is only available for members of U.S. Congress.</p>
+        <p id="record-header">
+          Voting history is only available for members of U.S. Congress.
+        </p>
         <form>
           <label id="chamber-label" htmlFor="chamber-select">
             Do you want to search Senate or the House?{" "}

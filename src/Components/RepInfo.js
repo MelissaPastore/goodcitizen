@@ -23,12 +23,11 @@ const RepInfo = (props) => {
           you entered your address correctly.{" "}
         </div>
       ) : (
-        <div>
+        <div id="rep-info">
           <p>Here are your representatives:</p>
           <Table stickyHeader={true}>
-            <TableHead>
-              <TableRow style={{ backgroundColor: "#5386e4" }}>
-                <TableCell>Image</TableCell>
+            <TableHead style={{ color: "#5386e4" }}>
+              <TableRow>
                 <TableCell>Name</TableCell>
                 <TableCell>Office</TableCell>
                 <TableCell>Email</TableCell>
@@ -61,17 +60,6 @@ const RepInfo = (props) => {
 
                 return (
                   <TableRow key={index}>
-                    <TableCell>
-                      {official.photoUrl ? (
-                        <img
-                          className="rep-img"
-                          src={official.photoUrl}
-                          alt={`${official.name}`}
-                        />
-                      ) : (
-                        "No Image Available"
-                      )}
-                    </TableCell>
                     <TableCell>{official.name}</TableCell>
                     <TableCell>{office.name}</TableCell>
                     <TableCell>
@@ -114,7 +102,7 @@ const RepInfo = (props) => {
                           {twitter.id}
                         </a>
                       ) : (
-                        "No Twitter Found"
+                        "No Twitter available"
                       )}
                     </TableCell>
                     <TableCell>

@@ -65,6 +65,11 @@ p {
   color: #4c4b63;
 }
 
+#record-header {
+  font-size: 30px;
+  color: #4c4b63;
+}
+
 nav {
   align-items: center;
   color: #c0c0c0;
@@ -177,7 +182,7 @@ button {
 }
 
 #chamber-select {
-  font-size: 30px;
+  font-size: 25px;
   color: #4c4b63;
   border-radius: 10px;
 }
@@ -192,8 +197,28 @@ h2 {
   justify-content: space-evenly;
   align-content: space-around;
   border: 3px groove;
-  width: 90vw;
+  width: 80vw;
   height: 20vh;
   border-radius: 10px;
   align-items: baseline;
+}
+
+#record-error {
+  margin: 30px;
+  font-size: 20px;
+}
+#rep-error {
+  margin: 30px;
+  font-size: 20px;
+}
+
+#rep-info {
+  width: 90%;
+  margin: 5%;
+  color: #4c4b63;
+}
+
+#record-info {
+  width: 90%;
+  margin: 5%;
 }

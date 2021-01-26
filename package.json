@@ -12,6 +12,7 @@
     "carbon-icons": "^7.0.7",
     "civic-info": "0.0.5",
     "ibm-watson": "^6.0.1",
+    "material-table": "^1.69.2",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

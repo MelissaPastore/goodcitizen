@@ -17,13 +17,13 @@ class RecordInfo extends React.Component {
     return (
       <div>
         {error ? (
-          <div>
+          <div id="record-error">
             We couldn't find a voting history for that person. Please make sure
             you were searching the correct chamber of Congress and that the
             person is a current member of Congress.
           </div>
         ) : (
-          <div>
+          <div id="record-info">
             <p>{`Here is the recent voting record for ${this.props.name}`}:</p>
             <Table stickyHeader={true}>
               <TableHead variant="header">
