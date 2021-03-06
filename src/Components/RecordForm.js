@@ -1,110 +1,110 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { fetchMembers } from "../store/members";
 import { fetchRecord, clearRecord } from "../store/records";
 import RecordInfo from "./RecordInfo";
 
-const defaultState = {
-  first_name: "",
-  last_name: "",
-  name: "",
-};
+function RecordForm({
+  clearRecord,
+  fetchRecord,
+  fetchMembers,
+  chamber,
+  members,
+  record,
+  name,
+}) {
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
 
-class RecordForm extends React.Component {
-  constructor() {
-    super();
-    this.state = defaultState;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  async componentDidMount() {
-    await this.props.clearRecord();
-    await this.props.fetchMembers(this.props.chamber);
-    let name;
-    if (this.props.name) {
-      name = this.props.name;
-      let nameArr = name.split(" ");
-      let first = nameArr[0];
-      let last;
-      if (nameArr.length === 2) {
-        last = nameArr[1];
-      } else if (nameArr.length > 2 && nameArr[1].length === 2) {
-        last = nameArr[2];
-      } else if (nameArr.length > 2) {
-        last = nameArr.slice(1).join(" ");
+  useEffect(() => {
+    const handleName = async () => {
+      if (!name.length) {
+        await clearRecord();
       }
-      this.setState({ first_name: first, last_name: last });
+
+      await fetchMembers(chamber);
+
+      if (name.length) {
+        let nameArr = name.split(" ");
+        let first = nameArr[0];
+        let last;
+        if (nameArr.length === 2) {
+          last = nameArr[1];
+        } else if (nameArr.length > 2 && nameArr[1].length === 2) {
+          last = nameArr[2];
+        } else if (nameArr.length > 2) {
+          last = nameArr.slice(1).join(" ");
+        }
+        setFirstName(first);
+        setLastName(last);
+      }
+    };
+    handleName();
+  }, []);
+
+  const handleChange = (event) => {
+    if (event.target.name === "first_name") {
+      setFirstName(event.target.value);
+    } else if (event.target.name === "last_name") {
+      setLastName(event.target.value);
     }
-  }
+  };
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  async handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    this.props.clearRecord();
-    let member = this.props.members.find((member) => {
-      return (
-        member.first_name === this.state.first_name &&
-        member.last_name === this.state.last_name
-      );
+    clearRecord();
+    let member = members.find((member) => {
+      return member.first_name === first_name && member.last_name === last_name;
     });
 
-    await this.props.fetchRecord(member);
+    await fetchRecord(member);
 
-    this.setState({
-      name: `${this.state.first_name} ${this.state.last_name}`,
-      first_name: "",
-      last_name: "",
-    });
-  }
+    setFullName(`${first_name} ${last_name}`);
+    setFirstName("");
+    setLastName("");
+  };
 
-  render() {
-    let chamber = this.props.chamber;
-    chamber = `${chamber.charAt(0).toUpperCase()}${chamber.slice(1)}`;
-    return (
-      <div id="form-container">
-        <p>{`Enter the name of a member of the ${chamber} to find their recent voting history.`}</p>
-        <form id="record-form" onSubmit={this.handleSubmit}>
-          <TextField
-            className="input"
-            label="First Name"
-            name="first_name"
-            type="text"
-            value={this.state.first_name}
-            variant="outlined"
-            onChange={this.handleChange}
-          />
-          <TextField
-            className="input"
-            label="Last Name"
-            name="last_name"
-            type="text"
-            value={this.state.last_name}
-            variant="outlined"
-            onChange={this.handleChange}
-          />
+  chamber = `${chamber.charAt(0).toUpperCase()}${chamber.slice(1)}`;
+  return (
+    <div id="form-container">
+      <p>{`Enter the name of a member of the ${chamber} to find their recent voting history.`}</p>
+      <form id="record-form" onSubmit={handleSubmit}>
+        <TextField
+          className="input"
+          label="First Name"
+          name="first_name"
+          type="text"
+          value={first_name}
+          variant="outlined"
+          onChange={handleChange}
+        />
+        <TextField
+          className="input"
+          label="Last Name"
+          name="last_name"
+          type="text"
+          value={last_name}
+          variant="outlined"
+          onChange={handleChange}
+        />
 
-          <Button
-            style={{ backgroundColor: "#5386e4" }}
-            variant="contained"
-            type="submit"
-            disabled={!this.state.first_name}
-            color="primary"
-            size="large"
-          >
-            Find Voting Records!
-          </Button>
-        </form>
-        {this.props.record.details && <RecordInfo name={this.state.name} />}
-        {this.props.record.error && <RecordInfo name={this.state.name} />}
-      </div>
-    );
-  }
+        <Button
+          style={{ backgroundColor: "#5386e4" }}
+          variant="contained"
+          type="submit"
+          disabled={!first_name}
+          color="primary"
+          size="large"
+        >
+          Find Voting Records!
+        </Button>
+      </form>
+      {record.details && <RecordInfo name={fullName} />}
+      {record.error && <RecordInfo name={fullName} />}
+    </div>
+  );
 }
 const mapStateToProps = (state) => {
   return {
