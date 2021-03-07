@@ -20,13 +20,9 @@ function RecordForm({
 
   useEffect(() => {
     const handleName = async () => {
-      if (!name.length) {
-        await clearRecord();
-      }
+      if (name && chamber) {
+        await fetchMembers(chamber);
 
-      await fetchMembers(chamber);
-
-      if (name.length) {
         let nameArr = name.split(" ");
         let first = nameArr[0];
         let last;
@@ -40,6 +36,11 @@ function RecordForm({
         setFirstName(first);
         setLastName(last);
       }
+      return async function cleanUp() {
+        await clearRecord();
+        setFirstName("");
+        setLastName("");
+      };
     };
     handleName();
   }, []);
