@@ -19,30 +19,26 @@ function RecordForm({
   const [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    const handleName = async () => {
-      if (name && chamber) {
-        await fetchMembers(chamber);
-
-        let nameArr = name.split(" ");
-        let first = nameArr[0];
-        let last;
-        if (nameArr.length === 2) {
-          last = nameArr[1];
-        } else if (nameArr.length > 2 && nameArr[1].length === 2) {
-          last = nameArr[2];
-        } else if (nameArr.length > 2) {
-          last = nameArr.slice(1).join(" ");
-        }
-        setFirstName(first);
-        setLastName(last);
+    fetchMembers(chamber);
+    if (name) {
+      let nameArr = name.split(" ");
+      let first = nameArr[0];
+      let last;
+      if (nameArr.length === 2) {
+        last = nameArr[1];
+      } else if (nameArr.length > 2 && nameArr[1].length === 2) {
+        last = nameArr[2];
+      } else if (nameArr.length > 2) {
+        last = nameArr.slice(1).join(" ");
       }
-      return async function cleanUp() {
-        await clearRecord();
-        setFirstName("");
-        setLastName("");
-      };
+      setFirstName(first);
+      setLastName(last);
+    }
+    return async function cleanUp() {
+      await clearRecord();
+      setFirstName("");
+      setLastName("");
     };
-    handleName();
   }, []);
 
   const handleChange = (event) => {
@@ -55,7 +51,6 @@ function RecordForm({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    clearRecord();
     let member = members.find((member) => {
       return member.first_name === first_name && member.last_name === last_name;
     });
