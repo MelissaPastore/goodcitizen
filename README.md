@@ -10,3 +10,6 @@ JavaScript, React, Redux, IBM’s Watson Assistant, the Propublica Congress API 
 To test this app, fork and clone this repo and run npm start. 
 
 
+## Developed By: 
+ 
+[Melissa Pastore](https://www.linkedin.com/in/melissalpastore)
