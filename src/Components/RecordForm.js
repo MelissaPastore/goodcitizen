@@ -39,7 +39,7 @@ function RecordForm({
       setFirstName("");
       setLastName("");
     };
-  }, []);
+  }, [chamber, clearRecord, fetchMembers, name]);
 
   const handleChange = (event) => {
     if (event.target.name === "first_name") {
