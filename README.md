@@ -6,7 +6,7 @@ The Good Citizen Assistant was created to help people be more engaged and inform
 
 JavaScript, React, Redux, IBM’s Watson Assistant, the Propublica Congress API and the Google Civic Information API
 
-### Set Up 
+## Set Up 
 To test this app, fork and clone this repo and run npm start. 
 
 
