@@ -10,7 +10,6 @@ import {
 
 const RecordInfo = ({ record, name }) => {
   const votes = record.details;
-
   const error = record.error;
 
   return (
