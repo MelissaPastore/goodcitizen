@@ -5,7 +5,7 @@ import { fetchMembers } from "../store/members";
 import { fetchRecord, clearRecord } from "../store/records";
 import RecordInfo from "./RecordInfo";
 
-function RecordForm({
+const RecordForm = ({
   clearRecord,
   fetchRecord,
   fetchMembers,
@@ -13,7 +13,7 @@ function RecordForm({
   members,
   record,
   name,
-}) {
+}) => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
@@ -51,6 +51,7 @@ function RecordForm({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    await clearRecord();
     let member = members.find((member) => {
       return member.first_name === first_name && member.last_name === last_name;
     });
@@ -101,7 +102,7 @@ function RecordForm({
       {record.error && <RecordInfo name={fullName} />}
     </div>
   );
-}
+};
 const mapStateToProps = (state) => {
   return {
     members: state.members,

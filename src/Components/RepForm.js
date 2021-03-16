@@ -1,112 +1,101 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RepInfo from "./RepInfo";
 import { Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { fetchRepInfo, clearRepInfo } from "../store/repInfo";
 
-const defaultState = {
-  street1: "",
-  street2: "",
-  city: "",
-  state: "",
-  zip: "",
-};
+const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
+  const [state, setState] = useState({
+    street1: "",
+    street2: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
-class RepForm extends React.Component {
-  constructor() {
-    super();
-    this.state = defaultState;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  useEffect(() => {
+    clearRepInfo();
+  }, [clearRepInfo]);
 
-  async componentDidMount() {
-    await this.props.clearRepInfo();
-  }
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.value });
+  };
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  async handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    await this.props.clearRepInfo();
-    const address = `${this.state.street1} ${this.state.street2} ${this.state.city} ${this.state.state} ${this.state.zip}`;
-    await this.props.fetchRepInfo(address);
-    this.setState(defaultState);
-  }
+    await clearRepInfo();
+    const address = `${state.street1} ${state.street2} ${state.city} ${state} ${state.zip}`;
+    await fetchRepInfo(address);
+    setState({ street1: "", street2: "", city: "", state: "", zip: "" });
+  };
 
-  render() {
-    return (
-      <div id="form-container">
-        <h2>Please enter your address to look up your representatives.</h2>
-        <form id="voter-form" onSubmit={this.handleSubmit}>
-          <TextField
-            className="input"
-            label="Street Address 1"
-            name="street1"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.street1}
-            variant="outlined"
-          />
+  return (
+    <div id="form-container">
+      <h2>Please enter your address to look up your representatives.</h2>
+      <form id="voter-form" onSubmit={handleSubmit}>
+        <TextField
+          className="input"
+          label="Street Address 1"
+          name="street1"
+          type="text"
+          onChange={handleChange}
+          value={state.street1}
+          variant="outlined"
+        />
 
-          <TextField
-            className="input"
-            label="Street Address 2"
-            name="street2"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.street2}
-            variant="outlined"
-          />
-          <TextField
-            className="input"
-            label="City"
-            name="city"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.city}
-            variant="outlined"
-          />
-          <TextField
-            className="input"
-            label="State"
-            name="state"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.state}
-            variant="outlined"
-          />
-          <TextField
-            className="input"
-            label="Zip"
-            name="zip"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.zip}
-            variant="outlined"
-          />
-          <div className="break"></div>
-          <Button
-            style={{ backgroundColor: "#5386e4" }}
-            variant="contained"
-            type="submit"
-            disabled={!this.state.street1}
-            color="primary"
-            size="small"
-          >
-            Find My Reps!
-          </Button>
-        </form>
-        {this.props.repInfo.details && <RepInfo />}
-        {this.props.repInfo.error && <RepInfo />}
-      </div>
-    );
-  }
-}
+        <TextField
+          className="input"
+          label="Street Address 2"
+          name="street2"
+          type="text"
+          onChange={handleChange}
+          value={state.street2}
+          variant="outlined"
+        />
+        <TextField
+          className="input"
+          label="City"
+          name="city"
+          type="text"
+          onChange={handleChange}
+          value={state.city}
+          variant="outlined"
+        />
+        <TextField
+          className="input"
+          label="State"
+          name="state"
+          type="text"
+          onChange={handleChange}
+          value={state.state}
+          variant="outlined"
+        />
+        <TextField
+          className="input"
+          label="Zip"
+          name="zip"
+          type="text"
+          onChange={handleChange}
+          value={state.zip}
+          variant="outlined"
+        />
+        <div className="break"></div>
+        <Button
+          style={{ backgroundColor: "#5386e4" }}
+          variant="contained"
+          type="submit"
+          disabled={!state.street1}
+          color="primary"
+          size="small"
+        >
+          Find My Reps!
+        </Button>
+      </form>
+      {repInfo.details && <RepInfo />}
+      {repInfo.error && <RepInfo />}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

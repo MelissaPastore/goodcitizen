@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function FindMyReps() {
+const FindMyReps = () => {
   return (
     <div>
       <p>
@@ -21,6 +21,6 @@ function FindMyReps() {
       </div>
     </div>
   );
-}
+};
 
 export default FindMyReps;

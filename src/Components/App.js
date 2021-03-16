@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import FindMyReps from "./FindMyReps";
 import VotingRecords from "./VotingRecords";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -27,6 +27,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
