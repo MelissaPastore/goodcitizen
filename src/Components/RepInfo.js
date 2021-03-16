@@ -9,11 +9,11 @@ import {
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const RepInfo = (props) => {
-  const repInfo = props.repInfo.details || {};
-  const offices = repInfo.offices || [];
-  const officials = repInfo.officials || [];
-  const error = props.repInfo.error || "";
+const RepInfo = ({ repInfo }) => {
+  const details = repInfo.details || {};
+  const offices = details.offices || [];
+  const officials = details.officials || [];
+  const error = repInfo.error || "";
 
   return (
     <div>
