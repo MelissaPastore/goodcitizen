@@ -36,12 +36,6 @@ const VotingRecords = ({ match }) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     members: state.members,
-//   };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMembers: (chamber) => dispatch(fetchMembers(chamber)),
