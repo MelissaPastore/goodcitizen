@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GOOGLE_API } from "../secrets";
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_API.toString();
 
 const SET_REP_INFO = "SET_REP_INFO";
 const SET_REP_INFO_ERR = "SET_REP_INFO_ERR";
