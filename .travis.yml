@@ -8,7 +8,6 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock# uses version 14
 script:
-  - npm test # test the code
   - npm run build # make the bundle
 before_deploy:
   - rm -rf node_modules # omit from the tarball, since we skip cleanup
