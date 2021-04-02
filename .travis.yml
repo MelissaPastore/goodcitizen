@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 14
+notifications:
+  email:
+    on_success: change # default: change (only when going from broken to fixed)
+    on_failure: always # default: always (which is annoying, as it should be)
+install:
+  - npm ci # faster, goes only from package-lock# uses version 14
+script:
+  - npm test # test the code
+  - npm run build # make the bundle
+before_deploy:
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: goodcitizenassistant
+  api_key:
+    secure: t5dYvcxxTKEFToij/4Uy1lpzGBCts1ATcq2S93US+xSG8ynfwCUibiaVfPjLtq4K2X4Backl2evQS9scsabNeGLhs9hatkai3lsFRG3qgKLKp3r+YMvjBOBofl4+hqcU8xrb1Q42wntFm/paQvSHX4xbJ7rO13luvKNcj4jx7OJJ5o7pZPiMDvaYnVHG7Z3BRhO7U6kaAZOHAMBS7IJUpUmZF14D1ssMH/b9EEycphnZpNL5mOj4uyJMk9GEgo+dF1QHoynRMXQ+E71cd/N14XsIfPrfuux0MqMpFqTMd0lRqRrdApFBClPEH4c92uNYxbgGSq0GDW/jfiMwEYf0QBRdu+PGXbXagK7xHhkOGSGZvoBAFxquxWo4BUdRFe1I9uuwPHGmOQ0/28rvVXhRbh8aPWgeOEndsoTDIJ+tePp3dwCAbU64vaY4ypJc8wLiuN5yVvTWfcvsnYgTHtMXvARdLfOtWs1lgW/OJI9tQUZ8grdP8jBS/C0++mRnQMEoHEkVOqzun2GOAcPXqmq6OuiuZp5Grc4g6TDQcMhBb3ftycQKn6J6Hq0VFBjh0z5CPPkjPiL7RlEEmIKyDPw9atJLF90Ls2G18nlGLDR3hhHt90OhYreEqWUJpjO5ZNCznJii2Gcu7ok8Yfd/418fQ2AZksAaKUA9shLv+yn+8k0=
