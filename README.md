@@ -10,7 +10,7 @@ JavaScript, React, Redux, IBM’s Watson Assistant, the Propublica Congress API 
 https://goodcitizenassistant.herokuapp.com/
 
 ## Set Up 
-To test this app locally, fork and clone this repo and run npm start. 
+To test this app locally, fork and clone this repo and run npm install followed by npm start. 
 
 
 ## Developed By: 
