@@ -70,32 +70,32 @@ const RecordForm = ({
       <form id="record-form" onSubmit={handleSubmit}>
         <TextField
           className="input"
-          label="First Name"
+          label="First"
           name="first_name"
           type="text"
           value={first_name}
           variant="outlined"
           onChange={handleChange}
+          margin="normal"
         />
         <TextField
           className="input"
-          label="Last Name"
+          label="Last"
           name="last_name"
           type="text"
           value={last_name}
           variant="outlined"
           onChange={handleChange}
         />
-
+        <div className="break"></div>
         <Button
           style={{ backgroundColor: "#5386e4" }}
           variant="contained"
           type="submit"
-          disabled={!first_name}
           color="primary"
           size="large"
         >
-          Find Voting Records!
+          Search
         </Button>
       </form>
       {record.details && <RecordInfo name={fullName} />}

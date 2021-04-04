@@ -35,7 +35,7 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
       <form id="voter-form" onSubmit={handleSubmit}>
         <TextField
           className="input"
-          label="Street Address 1"
+          label="Street 1"
           name="street1"
           type="text"
           onChange={handleChange}
@@ -45,7 +45,7 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
 
         <TextField
           className="input"
-          label="Street Address 2"
+          label="Street 2"
           name="street2"
           type="text"
           onChange={handleChange}
@@ -84,11 +84,10 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
           style={{ backgroundColor: "#5386e4" }}
           variant="contained"
           type="submit"
-          disabled={!state.street1}
           color="primary"
           size="small"
         >
-          Find My Reps!
+          Search
         </Button>
       </form>
       {repInfo.details && <RepInfo />}

@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Good Citizen Assistant</h1>
+        <h1 id="header">Good Citizen Assistant</h1>
       </header>
       <Navbar />
       <div>
