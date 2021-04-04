@@ -6,8 +6,11 @@ The Good Citizen Assistant was created to help people be more engaged and inform
 
 JavaScript, React, Redux, IBM’s Watson Assistant, the Propublica Congress API and the Google Civic Information API
 
+## Deployed App 
+https://goodcitizenassistant.herokuapp.com/
+
 ## Set Up 
-To test this app, fork and clone this repo and run npm start. 
+To test this app locally, fork and clone this repo and run npm start. 
 
 
 ## Developed By: 
