@@ -58,8 +58,9 @@
   border-radius: 5px;
 }
 
-.navbar-link:focus {
-  border-color: #949396;
+.navbar-link:focus,
+.navbar-link:hover,
+.navbar-link:active {
   color: #5386e4;
   text-decoration: underline;
   text-decoration-thickness: 3px;
@@ -214,7 +215,7 @@ nav {
   justify-content: space-evenly;
   align-content: space-around;
   border: 3px groove;
-  width: 40vw;
+  width: 80vw;
   height: 20vh;
   border-radius: 10px;
   align-items: baseline;
