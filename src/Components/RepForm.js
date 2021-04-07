@@ -30,68 +30,72 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
   };
 
   return (
-    <div id="form-container">
-      <h2>Please enter your address to look up your representatives.</h2>
-      <form id="voter-form" onSubmit={handleSubmit}>
-        <TextField
-          className="input"
-          label="Street 1"
-          name="street1"
-          type="text"
-          onChange={handleChange}
-          value={state.street1}
-          variant="outlined"
-        />
+    <div>
+      <div id="form-container">
+        <hr />
+        <form id="voter-form" onSubmit={handleSubmit}>
+          <h2>Please enter your address to look up your representatives.</h2>
+          <div className="break"></div>
+          <TextField
+            className="input"
+            label="Street 1"
+            name="street1"
+            type="text"
+            onChange={handleChange}
+            value={state.street1}
+            variant="outlined"
+          />
 
-        <TextField
-          className="input"
-          label="Street 2"
-          name="street2"
-          type="text"
-          onChange={handleChange}
-          value={state.street2}
-          variant="outlined"
-        />
-        <TextField
-          className="input"
-          label="City"
-          name="city"
-          type="text"
-          onChange={handleChange}
-          value={state.city}
-          variant="outlined"
-        />
-        <TextField
-          className="input"
-          label="State"
-          name="state"
-          type="text"
-          onChange={handleChange}
-          value={state.state}
-          variant="outlined"
-        />
-        <TextField
-          className="input"
-          label="Zip"
-          name="zip"
-          type="text"
-          onChange={handleChange}
-          value={state.zip}
-          variant="outlined"
-        />
-        <div className="break"></div>
-        <Button
-          style={{ backgroundColor: "#5386e4" }}
-          variant="contained"
-          type="submit"
-          color="primary"
-          size="small"
-        >
-          Search
-        </Button>
-      </form>
-      {repInfo.details && <RepInfo />}
-      {repInfo.error && <RepInfo />}
+          <TextField
+            className="input"
+            label="Street 2"
+            name="street2"
+            type="text"
+            onChange={handleChange}
+            value={state.street2}
+            variant="outlined"
+          />
+          <TextField
+            className="input"
+            label="City"
+            name="city"
+            type="text"
+            onChange={handleChange}
+            value={state.city}
+            variant="outlined"
+          />
+          <TextField
+            className="input"
+            label="State"
+            name="state"
+            type="text"
+            onChange={handleChange}
+            value={state.state}
+            variant="outlined"
+          />
+          <TextField
+            className="input"
+            label="Zip"
+            name="zip"
+            type="text"
+            onChange={handleChange}
+            value={state.zip}
+            variant="outlined"
+          />
+          <div className="break"></div>
+          <Button
+            style={{ backgroundColor: "#5386e4" }}
+            variant="contained"
+            type="submit"
+            color="primary"
+            size="small"
+          >
+            Search
+          </Button>
+        </form>
+        {repInfo.details && <RepInfo />}
+        {repInfo.error && <RepInfo />}
+      </div>
     </div>
   );
 };

@@ -11,10 +11,10 @@ const FindMyReps = () => {
       <p>How would you like to search?</p>
       <div>
         <nav id="rep-nav">
-          <Link className="nav-link" to="/selfservice">
+          <Link className="nav-link" to="/reps/selfservice">
             Self Service
           </Link>
-          <Link className="nav-link" to="watson">
+          <Link className="nav-link" to="/reps/watson">
             I Want To Chat!
           </Link>
         </nav>
