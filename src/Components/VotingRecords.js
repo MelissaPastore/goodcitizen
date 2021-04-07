@@ -25,7 +25,7 @@ const VotingRecords = ({ match }) => {
         <label id="chamber-label" htmlFor="chamber-select">
           Do you want to search Senate or the House?{" "}
         </label>
-
+        <div className="break"></div>
         <select id="chamber-select" onChange={handleChange}>
           <option value="senate">Senate</option>
           <option value="house">House</option>

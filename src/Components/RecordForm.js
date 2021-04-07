@@ -66,8 +66,9 @@ const RecordForm = ({
   chamber = `${chamber.charAt(0).toUpperCase()}${chamber.slice(1)}`;
   return (
     <div id="form-container">
-      <p>{`Enter the name of a member of the ${chamber} to find their recent voting history.`}</p>
       <form id="record-form" onSubmit={handleSubmit}>
+        <p>{`Enter the name of a member of the ${chamber} to find their recent voting history.`}</p>
+        <div className="break"></div>
         <TextField
           className="input"
           label="First"

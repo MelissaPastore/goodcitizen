@@ -85,7 +85,7 @@ body {
 }
 
 p {
-  font-size: 1.8em;
+  font-size: 1.3em;
   color: #4c4b63;
 }
 
@@ -128,7 +128,7 @@ nav {
 }
 
 #record-header {
-  font-size: 30px;
+  font-size: 1.4em;
   color: #4c4b63;
 }
 
@@ -153,9 +153,11 @@ nav {
   align-content: space-around;
   border: 3px groove;
   width: 70vw;
-  height: 30vh;
+  height: 40vh;
   border-radius: 10px;
   align-items: baseline;
+  margin: 3%;
+  padding: 3%;
 }
 
 #form-container {
@@ -199,12 +201,12 @@ nav {
 }
 
 #chamber-label {
-  font-size: 30px;
+  font-size: 1.4em;
   color: #4c4b63;
 }
 
 #chamber-select {
-  font-size: 25px;
+  font-size: 1.4em;
   color: #4c4b63;
   border-radius: 10px;
 }
@@ -216,9 +218,13 @@ nav {
   align-content: space-around;
   border: 3px groove;
   width: 80vw;
-  height: 20vh;
+  height: 30vh;
   border-radius: 10px;
   align-items: baseline;
+  margin: 10px;
+  padding: 5px;
+  /* margin: 2%;
+  padding: 2%; */
 }
 
 #record-error {

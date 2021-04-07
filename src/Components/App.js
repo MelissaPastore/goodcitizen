@@ -16,10 +16,10 @@ const App = () => {
       <Navbar />
       <div>
         <Switch>
-          <Route exact path="/selfservice" component={RepForm} />
-          <Route exact path="/watson" component={Watson} />
           <Route exact path="/" component={Welcome} />
           <Route exact path="/reps" component={FindMyReps} />
+          <Route exact path="/reps/selfservice" component={RepForm} />
+          <Route exact path="/reps/watson" component={Watson} />
           <Route path="/records/:name/:chamber" component={VotingRecords} />
           <Route path="/records/" component={VotingRecords} />
           <Route component={Welcome} />
