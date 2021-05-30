@@ -169,9 +169,10 @@ nav {
 #rep-container {
   display: flex;
   flex-flow: row wrap;
-  align-items: space-between;
+  align-items: center;
   align-content: center;
   color: black;
+  width: 90%;
 }
 
 #twitter {
