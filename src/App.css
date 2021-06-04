@@ -172,7 +172,7 @@ nav {
   align-items: center;
   align-content: center;
   color: black;
-  width: 90%;
+  justify-content: center;
 }
 
 #twitter {

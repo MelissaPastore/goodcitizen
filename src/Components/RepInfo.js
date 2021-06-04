@@ -16,10 +16,18 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: 70,
   },
+
+  media: {
+    paddingTop: "1%",
+    height: 100,
+    width: 100,
+    alignContent: "center",
+  },
   card: {
     margin: 10,
     height: 300,
-    width: 375,
+    width: 300,
+    borderRadius: 10,
   },
 }));
 
@@ -63,7 +71,11 @@ const RepInfo = ({ repInfo }) => {
               }
 
               return (
-                <Card key={official.name} className={classes.card}>
+                <Card
+                  key={official.name}
+                  elevation={10}
+                  className={classes.card}
+                >
                   {" "}
                   <CardHeader
                     className={classes.header}
