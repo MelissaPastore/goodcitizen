@@ -1,5 +1,5 @@
 import axios from "axios";
-const PROPUBLICA_API = process.env.REACT_APP_PROPUBLICA_API.toString();
+const PROPUBLICA_API = process.env.REACT_APP_PROPUBLICA_API;
 
 const SET_MEMBERS = "SET_MEMBERS";
 
