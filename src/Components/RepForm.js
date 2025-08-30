@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RepInfo from "./RepInfo";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField } from "@mui/material";
 import { connect } from "react-redux";
 import { fetchRepInfo, clearRepInfo } from "../store/repInfo";
 

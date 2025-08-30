@@ -4,10 +4,9 @@ import RepForm from "./RepForm";
 import Welcome from "./Welcome";
 import Navbar from "./Navbar";
 import VotingRecords from "./VotingRecords";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: `"Fjalla One",`,
   },
