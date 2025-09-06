@@ -1,5 +1,4 @@
 import axios from "axios";
-const GOOGLE_API = process.env.REACT_APP_GOOGLE_API; 
 
 const SET_REP_INFO = "SET_REP_INFO";
 const SET_REP_INFO_ERR = "SET_REP_INFO_ERR";
@@ -21,11 +20,10 @@ export function fetchRepInfo(address) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `https://www.googleapis.com/civicinfo/v2/representatives`,
+        `/.netlify/functions/google-civic-api`,
         {
           params: {
             address,
-            key: GOOGLE_API,
           },
         }
       );

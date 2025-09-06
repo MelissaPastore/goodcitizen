@@ -1,5 +1,4 @@
 import axios from "axios";
-const PROPUBLICA_API = process.env.REACT_APP_PROPUBLICA_API;
 
 const SET_MEMBERS = "SET_MEMBERS";
 
@@ -14,8 +13,12 @@ export function fetchMembers(chamber) {
       const {
         data,
       } = await axios.get(
-        `https://api.propublica.org/congress/v1/116/${chamber}/members.json`,
-        { headers: { "X-API-KEY": PROPUBLICA_API } }
+        `/.netlify/functions/propublica-members`,
+        { 
+          params: { 
+            chamber 
+          } 
+        }
       );
       dispatch(setMembers(data.results[0].members));
     } catch (err) {

@@ -12,6 +12,13 @@ https://goodcitizenassistant.herokuapp.com/
 ## Set Up 
 To test this app locally, fork and clone this repo and run npm install followed by npm start. 
 
+### Environment Variables
+The application uses Netlify Functions to securely handle external API calls. You'll need to set up the following environment variables for the Netlify Functions:
+
+- `GOOGLE_API` - API key for Google Civic Information API
+- `PROPUBLICA_API` - API key for ProPublica Congress API
+
+For local development with Netlify CLI, create a `.env` file in the root directory with these variables.
 
 ## Developed By: 
  

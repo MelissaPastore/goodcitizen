@@ -26,3 +26,7 @@ yarn-error.log*
 
 secrets.js
 
+
+# Local Netlify folder
+.netlify
+.env # Local environment variables file
