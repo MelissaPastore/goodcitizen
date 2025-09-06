@@ -7,7 +7,7 @@ The Good Citizen Assistant was created to help people be more engaged and inform
 JavaScript, React, Redux, Google's Dialogflow, the Propublica Congress API and the Google Civic Information API
 
 ## Deployed App 
-https://goodcitizenassistant.herokuapp.com/
+Coming soon! 
 
 ## Set Up 
 To test this app locally, fork and clone this repo and run npm install followed by npm start. 
