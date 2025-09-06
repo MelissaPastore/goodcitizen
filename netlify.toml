@@ -1,0 +1,13 @@
+[build]
+  functions = "netlify/functions"
+  publish = "build"
+
+[build.environment]
+  # Environment variables for the functions will be set in the Netlify dashboard
+  # GOOGLE_API = "your-google-api-key"
+  # PROPUBLICA_API = "your-propublica-api-key"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
