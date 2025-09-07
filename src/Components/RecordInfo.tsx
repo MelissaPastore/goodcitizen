@@ -31,7 +31,7 @@ const RecordInfo: React.FC<RecordInfoProps> = ({ record, name }) => {
         <div id="record-info">
           <p>{`Here is the recent voting record for ${name}`}:</p>
           <Table stickyHeader={true}>
-            <TableHead variant="header">
+            <TableHead>
               <TableRow>
                 <TableCell>Description</TableCell>
                 <TableCell>Date of Vote</TableCell>

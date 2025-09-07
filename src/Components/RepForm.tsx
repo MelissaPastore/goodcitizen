@@ -3,9 +3,17 @@ import RepInfo from "./RepInfo";
 import { Button, TextField } from "@mui/material";
 import { connect } from "react-redux";
 import { fetchRepInfo, clearRepInfo } from "../store/repInfo";
+import { RootState } from "../store";
+import { RepInfoState, FormState } from "../types";
 
-const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
-  const [state, setState] = useState({
+interface RepFormProps {
+  clearRepInfo: () => void;
+  fetchRepInfo: (address: string) => void;
+  repInfo: RepInfoState;
+}
+
+const RepForm: React.FC<RepFormProps> = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
+  const [state, setState] = useState<FormState>({
     street1: "",
     street2: "",
     city: "",
@@ -17,11 +25,11 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
     clearRepInfo();
   }, [clearRepInfo]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await clearRepInfo();
     const address = `${state.street1} ${state.street2} ${state.city} ${state.state} ${state.zip}`;
@@ -100,15 +108,15 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
   return {
     repInfo: state.repInfo,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchRepInfo: (address) => dispatch(fetchRepInfo(address)),
+    fetchRepInfo: (address: string) => dispatch(fetchRepInfo(address)),
     clearRepInfo: () => dispatch(clearRepInfo()),
   };
 };
