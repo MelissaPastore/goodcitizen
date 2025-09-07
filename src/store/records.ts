@@ -1,22 +1,27 @@
 import axios from "axios";
+import { Dispatch } from "redux";
+import { Vote, RecordActionTypes, Member } from "../types";
 
 const SET_RECORD = "SET_RECORD";
 const SET_RECORD_ERR = "SET_RECORD_ERR";
 const CLEAR_RECORD = "CLEAR_RECORD";
 
-export const setRecord = (record) => ({
+export const setRecord = (record: Vote[]): RecordActionTypes => ({
   type: SET_RECORD,
   record,
 });
 
-export const clearRecord = () => ({
+export const clearRecord = (): RecordActionTypes => ({
   type: CLEAR_RECORD,
 });
 
-export const setRecordErr = (error) => ({ type: SET_RECORD_ERR, error });
+export const setRecordErr = (error: string): RecordActionTypes => ({ 
+  type: SET_RECORD_ERR, 
+  error 
+});
 
-export function fetchRecord(member) {
-  return async (dispatch) => {
+export function fetchRecord(member: Member) {
+  return async (dispatch: Dispatch<RecordActionTypes>) => {
     try {
       const {
         data,
@@ -29,7 +34,7 @@ export function fetchRecord(member) {
         }
       );
       dispatch(setRecord(data.results[0].votes));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(setRecordErr(error.message));
     }
   };
@@ -37,7 +42,7 @@ export function fetchRecord(member) {
 
 const initialState = { details: null, error: null };
 
-export default function votingRecordReducer(state = initialState, action) {
+export default function votingRecordReducer(state = initialState, action: RecordActionTypes) {
   switch (action.type) {
     case SET_RECORD:
       return { ...state, details: action.record };

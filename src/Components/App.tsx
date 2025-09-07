@@ -1,3 +1,4 @@
+import React from "react";
 import "../App.css";
 import { Route, Switch } from "react-router-dom";
 import RepForm from "./RepForm";
@@ -12,7 +13,7 @@ const theme = createTheme({
   },
 });
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">

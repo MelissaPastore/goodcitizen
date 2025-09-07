@@ -1,11 +1,14 @@
+import React from "react";
 import { makeStyles } from "@mui/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { connect } from "react-redux";
+import { RootState } from "../store";
+import { RepInfoState, Official } from "../types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     maxWidth: 900,
     margin: 15,
@@ -30,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RepInfo = ({ repInfo }) => {
+interface RepInfoProps {
+  repInfo: RepInfoState;
+}
+
+const RepInfo: React.FC<RepInfoProps> = ({ repInfo }) => {
   const classes = useStyles();
   const officials = repInfo?.details || [];
   const error = repInfo?.error || "";
@@ -50,7 +57,7 @@ const RepInfo = ({ repInfo }) => {
         <div id="rep-info">
           <p>Here are your representatives:</p>
           <div id="rep-container">
-            {officials.map((official, index) => {
+            {officials.map((official: Official, index: number) => {
               const name = official.first_name + " " + official.last_name;
               const twitter =
                 official.identifiers &&
@@ -98,8 +105,6 @@ const RepInfo = ({ repInfo }) => {
                             id="email"
                             src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
                             alt="email logo"
-                            target="_blank"
-                            rel="noopener noreferrer"
                           />
                           {official.email_addresses[0]}
                         </a>
@@ -135,7 +140,7 @@ const RepInfo = ({ repInfo }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
   return {
     repInfo: state.repInfo,
   };

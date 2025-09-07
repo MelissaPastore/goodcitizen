@@ -1,14 +1,16 @@
 import axios from "axios";
+import { Dispatch } from "redux";
+import { Member, MembersActionTypes } from "../types";
 
 const SET_MEMBERS = "SET_MEMBERS";
 
-export const setMembers = (members) => ({
+export const setMembers = (members: Member[]): MembersActionTypes => ({
   type: SET_MEMBERS,
   members,
 });
 
-export function fetchMembers(chamber) {
-  return async (dispatch) => {
+export function fetchMembers(chamber: string) {
+  return async (dispatch: Dispatch<MembersActionTypes>) => {
     try {
       const {
         data,
@@ -27,9 +29,9 @@ export function fetchMembers(chamber) {
   };
 }
 
-const initialState = [];
+const initialState: Member[] = [];
 
-export default function votingRecordReducer(state = initialState, action) {
+export default function votingRecordReducer(state = initialState, action: MembersActionTypes): Member[] {
   switch (action.type) {
     case SET_MEMBERS:
       return action.members;

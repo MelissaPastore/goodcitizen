@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
 import RecordForm from "./RecordForm";
 import { fetchMembers } from "../store/members";
 
-const VotingRecords = ({ match }) => {
-  const [currChamber, setChamber] = useState("senate");
+interface MatchParams {
+  chamber?: string;
+  name?: string;
+}
+
+interface VotingRecordsProps extends RouteComponentProps<MatchParams> {
+  fetchMembers: (chamber: string) => void;
+}
+
+const VotingRecords: React.FC<VotingRecordsProps> = ({ match, fetchMembers }) => {
+  const [currChamber, setChamber] = useState<string>("senate");
 
   useEffect(() => {
     if (match.params.chamber) {
@@ -12,7 +22,7 @@ const VotingRecords = ({ match }) => {
     }
   }, [match.params.chamber]);
 
-  const handleChange = async (event) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     await setChamber(event.target.value);
   };
 
@@ -36,9 +46,9 @@ const VotingRecords = ({ match }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchMembers: (chamber) => dispatch(fetchMembers(chamber)),
+    fetchMembers: (chamber: string) => dispatch(fetchMembers(chamber)),
   };
 };
 

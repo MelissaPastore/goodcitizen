@@ -4,8 +4,20 @@ import { connect } from "react-redux";
 import { fetchMembers } from "../store/members";
 import { fetchRecord, clearRecord } from "../store/records";
 import RecordInfo from "./RecordInfo";
+import { RootState } from "../store";
+import { Member, RecordState } from "../types";
 
-const RecordForm = ({
+interface RecordFormProps {
+  clearRecord: () => void;
+  fetchRecord: (member: Member) => void;
+  fetchMembers: (chamber: string) => void;
+  chamber: string;
+  members: Member[];
+  record: RecordState;
+  name?: string;
+}
+
+const RecordForm: React.FC<RecordFormProps> = ({
   clearRecord,
   fetchRecord,
   fetchMembers,
@@ -14,16 +26,16 @@ const RecordForm = ({
   record,
   name,
 }) => {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [first_name, setFirstName] = useState<string>("");
+  const [last_name, setLastName] = useState<string>("");
+  const [fullName, setFullName] = useState<string>("");
 
   useEffect(() => {
     fetchMembers(chamber);
     if (name) {
       let nameArr = name.split(" ");
       let first = nameArr[0];
-      let last;
+      let last: string = "";
       if (nameArr.length === 2) {
         last = nameArr[1];
       } else if (nameArr.length > 2 && nameArr[1].length === 2) {
@@ -34,14 +46,14 @@ const RecordForm = ({
       setFirstName(first);
       setLastName(last);
     }
-    return async function cleanUp() {
-      await clearRecord();
+    return () => {
+      clearRecord();
       setFirstName("");
       setLastName("");
     };
   }, [chamber, clearRecord, fetchMembers, name]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === "first_name") {
       setFirstName(event.target.value);
     } else if (event.target.name === "last_name") {
@@ -49,25 +61,27 @@ const RecordForm = ({
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await clearRecord();
     let member = members.find((member) => {
       return member.first_name === first_name && member.last_name === last_name;
     });
 
-    await fetchRecord(member);
+    if (member) {
+      await fetchRecord(member);
+    }
 
     setFullName(`${first_name} ${last_name}`);
     setFirstName("");
     setLastName("");
   };
 
-  chamber = `${chamber.charAt(0).toUpperCase()}${chamber.slice(1)}`;
+  const capitalizedChamber = `${chamber.charAt(0).toUpperCase()}${chamber.slice(1)}`;
   return (
     <div id="form-container">
       <form id="record-form" onSubmit={handleSubmit}>
-        <p>{`Enter the name of a member of the ${chamber} to find their recent voting history.`}</p>
+        <p>{`Enter the name of a member of the ${capitalizedChamber} to find their recent voting history.`}</p>
         <div className="break"></div>
         <TextField
           className="input"
@@ -104,17 +118,18 @@ const RecordForm = ({
     </div>
   );
 };
-const mapStateToProps = (state) => {
+
+const mapStateToProps = (state: RootState) => {
   return {
     members: state.members,
     record: state.record,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchMembers: (chamber) => dispatch(fetchMembers(chamber)),
-    fetchRecord: (member) => dispatch(fetchRecord(member)),
+    fetchMembers: (chamber: string) => dispatch(fetchMembers(chamber)),
+    fetchRecord: (member: Member) => dispatch(fetchRecord(member)),
     clearRecord: () => dispatch(clearRecord()),
   };
 };

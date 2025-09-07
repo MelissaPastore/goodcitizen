@@ -1,7 +1,8 @@
+import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <div>
       <nav id="navbar">
