@@ -1,4 +1,6 @@
-const Welcome = () => {
+import React from "react";
+
+const Welcome: React.FC = () => {
   return (
     <div id="welcome">
       <div className="welcome">

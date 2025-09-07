@@ -7,8 +7,15 @@ import {
   TableHead,
   TableCell,
 } from "@mui/material";
+import { RootState } from "../store";
+import { RecordState } from "../types";
 
-const RecordInfo = ({ record, name }) => {
+interface RecordInfoProps {
+  record: RecordState;
+  name: string;
+}
+
+const RecordInfo: React.FC<RecordInfoProps> = ({ record, name }) => {
   const votes = record.details;
   const error = record.error;
 
@@ -33,7 +40,7 @@ const RecordInfo = ({ record, name }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {votes.map((vote, index) => {
+              {votes?.map((vote, index) => {
                 const date = new Date(vote.date);
 
                 return (
@@ -55,7 +62,7 @@ const RecordInfo = ({ record, name }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
   return {
     record: state.record,
   };

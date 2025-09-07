@@ -3,13 +3,15 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import repInfo from "./repInfo";
-import members from "./members"
-import record from "./records"
+import members from "./members";
+import record from "./records";
 
 const reducer = combineReducers({ repInfo, members, record });
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }) as any)
 );
 const store = createStore(reducer, middleware);
 
 export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
