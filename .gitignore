@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/netlify/node_modules
 
 # testing
 /coverage
@@ -26,3 +27,7 @@ yarn-error.log*
 
 secrets.js
 
+
+# Local Netlify folder
+.netlify
+.env # Local environment variables file

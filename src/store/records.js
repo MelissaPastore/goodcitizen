@@ -1,5 +1,4 @@
 import axios from "axios";
-const PROPUBLICA_API = process.env.REACT_APP_PROPUBLICA_API; 
 
 const SET_RECORD = "SET_RECORD";
 const SET_RECORD_ERR = "SET_RECORD_ERR";
@@ -22,8 +21,12 @@ export function fetchRecord(member) {
       const {
         data,
       } = await axios.get(
-        `https://api.propublica.org/congress/v1/members/${member.id}/votes.json`,
-        { headers: { "X-API-KEY": PROPUBLICA_API } }
+        `/.netlify/functions/propublica-voting-records`,
+        { 
+          params: { 
+            memberId: member.id 
+          } 
+        }
       );
       dispatch(setRecord(data.results[0].votes));
     } catch (error) {
