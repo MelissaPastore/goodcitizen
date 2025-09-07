@@ -19,15 +19,11 @@ export const clearRepInfo = () => ({ type: CLEAR_REP_INFO });
 export function fetchRepInfo(address) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(
-        `/.netlify/functions/google-civic-api`,
-        {
-          params: {
-            address,
-          },
-        }
-      );
-
+      const { data } = await axios.get(`/.netlify/functions/cicero-reps-api`, {
+        params: {
+          address,
+        },
+      });
       dispatch(setRepInfo(data));
     } catch (error) {
       dispatch(setRepInfoErr(error.message));
@@ -40,11 +36,16 @@ const initialState = { details: null, error: null };
 export default function repReducer(state = initialState, action) {
   switch (action.type) {
     case SET_REP_INFO:
-      return { ...state, details: action.repInfo };
+      return {
+        ...state,
+        details:
+          action.repInfo?.response?.results?.candidates?.[0]?.officials || [],
+        error: null,
+      };
     case SET_REP_INFO_ERR:
-      return { ...state, error: action.error };
+      return { ...state, error: action.error, details: null };
     case CLEAR_REP_INFO:
-      return {};
+      return { ...initialState };
     default:
       return state;
   }

@@ -4,7 +4,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,10 +32,9 @@ const useStyles = makeStyles((theme) => ({
 
 const RepInfo = ({ repInfo }) => {
   const classes = useStyles();
-  const details = repInfo.details || {};
-  const offices = details.offices || [];
-  const officials = details.officials || [];
-  const error = repInfo.error || "";
+  const officials = repInfo?.details || [];
+  console.log("DETAILS:", officials);
+  const error = repInfo?.error || "";
 
   return (
     <div>
@@ -45,45 +43,29 @@ const RepInfo = ({ repInfo }) => {
           There was a problem looking up your representatives. Please make sure
           you entered your address correctly.{" "}
         </div>
+      ) : !officials || officials.length === 0 ? (
+        <div id="loading">
+          Please enter an address to find your representatives.
+        </div>
       ) : (
         <div id="rep-info">
           <p>Here are your representatives:</p>
           <div id="rep-container">
             {officials.map((official, index) => {
-              let office = offices.find((office) => {
-                return office.officialIndices.includes(index);
-              });
-              let twitter;
-              official.channels
-                ? (twitter = official.channels.find((channel) => {
-                    return channel.type === "Twitter";
-                  }))
-                : (twitter = undefined);
-
-              let senate = office.name === "U.S. Senator";
-              let house = office.name === "U.S. Representative";
-              let congress = senate || house;
-              let chamber;
-              if (senate) {
-                chamber = "senate";
-              } else if (house) {
-                chamber = "house";
-              }
+              const name = official.first_name + " " + official.last_name;
+              const twitter =
+                official.identifiers &&
+                official.identifiers.find(
+                  (id) => id.identifier_type === "TWITTER"
+                );
 
               return (
-                <Card
-                  key={official.name}
-                  elevation={10}
-                  className={classes.card}
-                >
+                <Card key={name} elevation={10} className={classes.card}>
                   {" "}
-                  <CardHeader
-                    className={classes.header}
-                    title={official.name}
-                  />
+                  <CardHeader className={classes.header} title={name} />
                   <CardContent>
                     <Typography variant="h6" component="p">
-                      {office.name}
+                      {official.office.title}
                     </Typography>
 
                     <Typography variant="h6" component="p">
@@ -93,7 +75,7 @@ const RepInfo = ({ repInfo }) => {
                     <Typography variant="h6" component="p">
                       {twitter ? (
                         <a
-                          href={`https://twitter.com/${twitter.id}`}
+                          href={`https://twitter.com/${twitter.identifier_value}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -102,7 +84,7 @@ const RepInfo = ({ repInfo }) => {
                             src="https://www.pinclipart.com/picdir/big/74-740310_transparent-background-twitter-logo-clipart.png"
                             alt="twitter logo"
                           />
-                          {twitter.id}{" "}
+                          {twitter.identifier_value}{" "}
                         </a>
                       ) : (
                         "No Twitter available"
@@ -110,8 +92,9 @@ const RepInfo = ({ repInfo }) => {
                     </Typography>
 
                     <Typography variant="h6" component="p">
-                      {official.emails ? (
-                        <a href={`mailto: ${official.emails[0]}`}>
+                      {official.email_addresses &&
+                      official.email_addresses.length > 0 ? (
+                        <a href={`mailto:${official.email_addresses[0]}`}>
                           <img
                             id="email"
                             src="https://i.pinimg.com/originals/8f/c3/7b/8fc37b74b608a622588fbaa361485f32.png"
@@ -119,7 +102,7 @@ const RepInfo = ({ repInfo }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                           />
-                          {official.emails[0]}
+                          {official.email_addresses[0]}
                         </a>
                       ) : (
                         "No email available"
@@ -127,25 +110,21 @@ const RepInfo = ({ repInfo }) => {
                     </Typography>
 
                     <Typography variant="h6" component="div">
-                      {official.phones ? (
+                      {official.addresses &&
+                      official.addresses.length > 0 &&
+                      official.addresses[0].phone_1 ? (
                         <div>
                           <img
                             id="phone"
                             src="https://www.pinclipart.com/picdir/big/129-1293919_small-phone-icon-blue-clipart.png"
-                            alt="email logo"
+                            alt="phone logo"
                           />
-                          {official.phones[0]}
+                          {official.addresses[0].phone_1}
                         </div>
                       ) : (
                         "No phone number available"
                       )}
                     </Typography>
-
-                    {congress && (
-                      <Link to={`/records/${official.name}/${chamber}`}>
-                        Click to see recent voting history
-                      </Link>
-                    )}
                   </CardContent>
                 </Card>
               );

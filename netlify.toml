@@ -4,8 +4,11 @@
 
 [build.environment]
   # Environment variables for the functions will be set in the Netlify dashboard
-  # GOOGLE_API = "your-google-api-key"
-  # PROPUBLICA_API = "your-propublica-api-key"
+  # CICERO_API_KEY = "your-cicero-api-key"
+
+[dev]
+  port = 8888
+  functionsPort = 8889
 
 [[redirects]]
   from = "/*"

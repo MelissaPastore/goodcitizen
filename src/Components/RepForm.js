@@ -24,7 +24,7 @@ const RepForm = ({ clearRepInfo, fetchRepInfo, repInfo }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await clearRepInfo();
-    const address = `${state.street1} ${state.street2} ${state.city} ${state} ${state.zip}`;
+    const address = `${state.street1} ${state.street2} ${state.city} ${state.state} ${state.zip}`;
     await fetchRepInfo(address);
     setState({ street1: "", street2: "", city: "", state: "", zip: "" });
   };
