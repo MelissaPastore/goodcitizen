@@ -6,7 +6,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from "@material-ui/core";
+} from "@mui/material";
 
 const RecordInfo = ({ record, name }) => {
   const votes = record.details;
