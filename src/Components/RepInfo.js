@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 const RepInfo = ({ repInfo }) => {
   const classes = useStyles();
   const officials = repInfo?.details || [];
-  console.log("DETAILS:", officials);
   const error = repInfo?.error || "";
 
   return (

@@ -55,10 +55,6 @@ exports.handler = async (req, context) => {
     }
 
     const CICERO_API_KEY = process.env.CICERO_API_KEY;
-
-    console.log('CICERO_API_KEY:', CICERO_API_KEY ? 'Present' : 'Missing');
-    console.log('Address:', address);
-
     if (!CICERO_API_KEY) {
       return {
         statusCode: 500,
